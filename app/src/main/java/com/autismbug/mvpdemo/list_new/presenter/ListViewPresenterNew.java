@@ -23,6 +23,9 @@ public class ListViewPresenterNew extends BasePresenterNew<IListViewNew> {
     }
 
     public void updateList() {
+        if (mView == null) {
+            return;
+        }
         mView.showLoading();
         mRequestBiz.requestForData(new OnRequestListener() {
             @Override
@@ -31,6 +34,9 @@ public class ListViewPresenterNew extends BasePresenterNew<IListViewNew> {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
+                        if (mView == null) {
+                            return;
+                        }
                         mView.hideLoading();
                         mView.setListItem(data);
                     }
@@ -43,6 +49,9 @@ public class ListViewPresenterNew extends BasePresenterNew<IListViewNew> {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
+                        if (mView == null) {
+                            return;
+                        }
                         mView.hideLoading();
                         mView.showMessage("请求失败");
                     }
@@ -52,6 +61,9 @@ public class ListViewPresenterNew extends BasePresenterNew<IListViewNew> {
     }
 
     public void onItemClick(int position) {
+        if (mView == null) {
+            return;
+        }
         mView.showMessage("点击了item" + (position + 1));
     }
 }
